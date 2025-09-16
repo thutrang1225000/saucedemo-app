@@ -5,3 +5,8 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+# .gitignore
+.env
+.env.local
+.env.staging
+.env.production

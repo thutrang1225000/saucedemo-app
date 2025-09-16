@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * Read environment variables from file.
@@ -30,8 +32,15 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    baseURL: 'https://www.saucedemo.com/',
+    headless: true,
+    storageState: 'storageState.json', // bypass login
   },
 
+
+  globalSetup: require.resolve('./global-setup'),
+
+  timeout: 30 * 1000,
   /* Configure projects for major browsers */
   projects: [
     {
@@ -76,4 +85,5 @@ export default defineConfig({
   //   url: 'http://localhost:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+
 });

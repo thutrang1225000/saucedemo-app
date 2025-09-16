@@ -1,0 +1,15 @@
+{
+    "prod": {
+      "admin": { "username": "standard_user", "password": "secret_sauce" },
+      "user": { "username": "locked_out_user", "password": "secret_sauce" }
+    },
+    "staging": {
+      "admin": { "username": "staging_admin", "password": "secret_sauce" },
+      "user": { "username": "performance_glitch_user", "password": "secret_sauce" }
+    },
+    "local": {
+      "admin": { "username": "error_user", "password": "secret_sauce" },
+      "user": { "username": "visual_user", "password": "secret_sauce" }
+    }
+}
+  
