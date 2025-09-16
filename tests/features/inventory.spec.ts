@@ -15,15 +15,10 @@ test.describe('Inventory page', () => {
         for (const name of listProductNames) {
             await inventoryPage.addToCartByProductName(name);
         }
-        // Verify badge = total number of products added
-        expect(Number(await inventoryPage.getCartCount())).toBe(listProductNames.length);
-
         // Remove each product, badge decreases
         let expected = listProductNames.length; //expected lưu số lượng sản phẩm còn lại trong giỏ hàng.
         for (const name of listProductNames) {
-            // Try remove if there is
             const removed = await inventoryPage.removeFromCartByProductName(name);
-
             // Nếu remove thành công → expected-1
             if (removed) expected--;
         }

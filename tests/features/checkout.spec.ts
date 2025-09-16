@@ -1,9 +1,17 @@
 import { test, expect } from '../fixture';
-import { BasePage } from '../pages/BasePage';
-// Yêu cầu: đã có global-setup để bypass login (storageState.json)
-// hoặc login trong beforeEach tùy bạn.
+import dataProduct from '../../testdata/data-product.json';
+
 
 test.describe('Checkout scenario', () => {
+
+    const listProductNames = Object.keys(dataProduct);
+
+    test.beforeEach(async ({ inventoryPage }) => {
+        await inventoryPage.gotoInventoryPage();
+        await inventoryPage.addToCartByProductName(listProductNames[0]);
+        await inventoryPage.addToCartByProductName(listProductNames[1]);
+        await inventoryPage.addToCartByProductName(listProductNames[2]);
+    });
     test('checkout step one', async ({ checkoutPage }) => {
 
         await checkoutPage.fillYourInfo('Trang', 'Thu', '10000');

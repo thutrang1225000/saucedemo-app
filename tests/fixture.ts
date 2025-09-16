@@ -32,10 +32,7 @@ export const test = base.extend<MyFixtures>({
     await use(cartPage)
   },
 
-  checkoutPage: async ({ page, inventoryPage }, use) => {
-    await inventoryPage.addToCartByProductName('Sauce Labs Backpack');
-    await inventoryPage.addToCartByProductName('Sauce Labs Bike Light');
-    await inventoryPage.addToCartByProductName('Sauce Labs Bolt T-Shirt');
+  checkoutPage: async ({ page }, use) => {
     const checkoutPage = new CheckoutPage(page);
     await checkoutPage.gotoCheckoutPage();
     await use(checkoutPage)

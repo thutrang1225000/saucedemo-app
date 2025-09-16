@@ -15,8 +15,6 @@ export class CheckoutPage extends BasePage {
     readonly finishBtn: Locator;
 
     // (Optional) các field tổng tiền ở step two
-    readonly paymentInfo: Locator;
-    readonly shippingInfo: Locator;
     readonly subTotalLabel: Locator;
     readonly tax: Locator;
     readonly total: Locator;
@@ -33,8 +31,6 @@ export class CheckoutPage extends BasePage {
 
         // Step Two 
         this.finishBtn = page.locator('[data-test="finish"]');
-        this.paymentInfo = page.locator('.summary_value_label').nth(0);
-        this.shippingInfo = page.locator('.summary_value_label').nth(1);
         this.subTotalLabel = page.locator('.summary_subtotal_label');
         this.tax = page.locator('.summary_tax_label');
         this.total = page.locator('.summary_total_label');
@@ -51,16 +47,6 @@ export class CheckoutPage extends BasePage {
         await this.page.waitForURL('**/checkout-step-two.html');
     }
 
-
-    async setUpCart(productNames: string[]) {
-        const inventoryPage = new InventoryPage(this.page);
-        await inventoryPage.gotoInventoryPage();
-        for (const name of productNames) {
-            await inventoryPage.addToCartByProductName(name);
-        }
-        console.log('setUpCart success with' + productNames.length + 'products');
-        await this.openCart();
-    }
     // Step Two: verify subtotal = sum(dataProduct)
     async verifySubtotal(productNames: string[]) {
         const subtotalText = await this.subTotalLabel.innerText(); // "Item total: $39.98"

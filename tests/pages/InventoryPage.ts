@@ -30,7 +30,6 @@ export class InventoryPage extends BasePage {
         if (await card.getByRole('button', { name: /^remove$/i }).count()) {
             return true;
         }
-
         try {
             await addToCartBtnSelector.click({ timeout: 1500 });
             return true;
